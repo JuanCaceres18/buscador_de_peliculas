@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de películas</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Menú -->
+    <header class="container-menu">
+        <ul class="menu">
+            <li><img src="../static/logo_netflix.png" alt="Logo de Netflix"></li>
+            <div class="opciones">
+                <li><a href="#">Peliculas</a></li>
+                <li><a href="#">Series</a></li>
+                <li><a href="#">Estrenos</a></li>
+            </div>
+        </ul>
+    </header>
+    <!-- Buscador -->
+    <h1>Buscador de películas</h1>
+    <form class="container-search" action={{url_for("buscar")}} method="get">
+        <input type="text" class="search-input" name="busqueda" placeholder="Ingresa tu película aquí"><i class="fa-solid fa-magnifying-glass icon"></i>
+        <input type="submit" class="btn-submit" value="Buscar">
+    </form>
+    <h2>Películas encontradas:</h2>
+    <div class="listado-peliculas">
+        <!-- <div class="movie">
+            <img src="https://image.tmdb.org/t/p/w180_and_h180_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg,1995-11-22,373554033.0,81,862,https://themoviedb.org/movie/862,1995,Adventure|Animation|Children|Comedy|Fantasy" alt="poster de Toy Story">
+            <h3 class="movie-title">Toy Story</h3>
+            <p class="movie-details">(Año: 1995)</p>
+            <button class="movie-btn">Ver detalles</button>
+        </div> -->
+        {% for title, items in movies_list.items() %}
+        <div class="movie">
+            <img src={{items[1]}} alt="">
+            <h3 class="movie-title">{{title}}</h3>
+            <p class="movie-details">{{items[0]}}</p>
+            <button class="movie-btn">Ver detalles</button>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
